@@ -1,5 +1,5 @@
 name: build
-on: push
+on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
       - run: cd pico-sdk && git submodule update --init lib/tinyusb
       - run: cmake -DPICO_SDK_PATH=$PWD/pico-sdk -DPICO_STDIO_USB=ON .
       - run: make
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: pico_serprog
           path: |
